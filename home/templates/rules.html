@@ -1,0 +1,63 @@
+<!-- templates/home.html -->
+{% extends 'base.html' %}
+{% block title %}
+    | Reglamento
+{% endblock %}
+{% block content %}
+<br/>
+<div class="card">
+    <h4 class="card-header">Reglamento</h4>
+    <div class="card-body">
+        <p class="card-text">
+            <div class="card">
+                <h4 class="card-header">Ingreso de predicciones</h4>
+                <div class="card-body">
+                    <div>
+                        <ol>
+                            <li>Para ingresar sus predicciones el jugador debe ingresar en <a href="{% url 'my_results' %}"><strong>Mis Predicciones</strong></a>.</li>
+                            <li>Seleccionar la semana que quiere ingresar al juego del listado desplegable y presionar <i>Buscar Partidos</i></li>
+                            <li>Dentro del listado de partidos que aparecerá luego de 2, habrá 2 casillas para rellenar por partido, estas corresponden al puntaje del equipo local y al visitante (<i>Home-Away</i>)</li>
+                            <li>Una vez ingresados todos los resultados, el jugador debe presionar <strong>Guardar predicciones</strong></li>
+                        </ol>
+                        <div class="alert alert-danger" role="alert">
+                            <strong>IMPORTANTE!</strong> Una vez cargados los resultados no se podran editar. Si un partido figura como '0-0', sera cargado como resultado válido y no se podrá volver atras
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br/>
+            <div class="card">
+                <h4 class="card-header">Asignación de puntos</h4>
+                <div class="card-body">
+                    <div>
+                        <p>Existen varias maneras de sumar puntos.</p>
+                        <ul>
+                            <li>Acertando el ganador del partido</li>
+                            <li>Acertando la diferencia de puntos entre uno y otro</li>
+                            <li>Acertando el resultado exacto del partido</li>
+                        </ul>
+
+                        <p>Los puntos son repartidos de la siguiente manera:</p>
+                        <ul>
+                            <li>Acierto de ganador de partido: 1 pt</li>
+                            <li>Acierto de diferencia de puntos del ganador al perdedor: 2 pts</li>
+                            <li>Acierto de resultado exacto del partido: 3 pts</li>
+                        </ul>
+                        <p>Ejemplos:</p>
+                        El resultado del partido es 7-14
+                        <ul>
+                            <li>Si el jugador ingresó como resultado 7-21, suma 1 pt por haber acertado el ganador </li>
+                            <li>Si el jugador ingresó como resultado 14-21, suma 3 pts. 1 por acertar ganador, 2 por diferencia de pts</li>
+                            <li>Si el jugador ingresó como resultado 7-14, suma 6 pts. 1 por acertar ganador, 2 por diferencia de pts, 3 por resultado exacto</li>
+                            <li>Si el jugador ingresó como resultado 14-7, no suma puntos ya que no consiguió ningun acierto</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </p>
+    </div>
+
+</div>
+     <br/>
+
+{% endblock %}

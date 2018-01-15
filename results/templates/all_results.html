@@ -1,0 +1,30 @@
+<!-- templates/about.html -->
+{% extends 'base.html' %}
+{% block title %}
+    | Resultados
+{% endblock %}
+{% block content %}
+    <div>
+    <table>
+        <tr>
+            <th>
+                <td>Away Team</td>
+                <td></td>
+                <td></td>
+                <td>Home Team</td>
+            </th>
+        </tr>
+        {% for result in results %}
+            <tr>
+            <th>
+                <td>{{ result.get_away_team }}</td>
+                <td>{{ result.get_away_score }}</td>
+                <td>{{ result.get_home_score }}</td>
+                <td>{{ result.get_home_team }}</td>
+            </th>
+            </tr>
+        {% endfor %}
+    </table>
+    </div>
+
+{% endblock %}
