@@ -44,7 +44,8 @@
                     var game_prediction = {
                         game_id: game_id,
                         home_team_score: $('#home-'+game_id).val(),
-                        away_team_score: $('#away-'+game_id).val()
+                        away_team_score: $('#away-'+game_id).val(),
+                        user_id: "{{ user.pk }}"
                     };
                     games.push(game_prediction);
                 }
@@ -65,12 +66,12 @@
                     "<td class=\"col-sm-4\">" + game.away_team.name + "</td>" +
                     "<td class=\"col-sm-2\">" +
                         "<div class=\"input-group input-group-sm mb-3\">  " +
-                            "<input type=\"text\" id=\"away-"+ game.id +"\" class=\"form-control\">" +
+                            "<input type=\"number\" id=\"away-"+ game.id +"\" class=\"form-control\">" +
                         "</div>" +
                     "</td>" +
                     "<td class=\"col-sm-2\">" +
                         "<div class=\"input-group input-group-sm mb-3\"> " +
-                            "<input type=\"text\" id=\"home-"+ game.id +"\"class=\"form-control\">" +
+                            "<input type=\"number\" id=\"home-"+ game.id +"\"class=\"form-control\">" +
                         "</div>" +
                     "</td>" +
                     "<td class=\"col-sm-4\">" + game.home_team.name + "</td>" +

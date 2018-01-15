@@ -42,11 +42,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'registration',
+    'bootstrap4',
     'home',
     'teams',
     'weeks',
     'games',
-    'results'
+    'results',
+    'accounts',
 ]
 
 MIDDLEWARE = [
@@ -83,6 +86,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'prode.wsgi.application'
 
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
 
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
@@ -113,6 +118,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+ACCOUNT_ACTIVATION_DAYS = 7
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.0/topics/i18n/

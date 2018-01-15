@@ -1,0 +1,29 @@
+{# Load the tag library #}
+{% load bootstrap4 %}
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{# Display django.contrib.messages as Bootstrap alerts #}
+{% bootstrap_messages %}
+
+{# Display a form #}
+{% include 'unregistered_navbar.html' %}
+<br/>
+<div class="row">
+<div class="col-4">
+
+</div>
+<div class="col-4">
+<div class="card">
+    <h3 class="card-header bg-success">Cuenta activada!</h3>
+    <div class="card-body">
+        <p>Su cuenta fue activada correctamente. Inicie sesión para comenzar a jugar.</p>
+        <a href="{% url 'login' %}" class="btn btn-primary float-left">Iniciar sesión</a>
+    </div>
+</div>
+</div>
+</div>
+<div class="col-4"></div>
+</div>
