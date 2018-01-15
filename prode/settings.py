@@ -119,6 +119,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 ACCOUNT_ACTIVATION_DAYS = 7
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.0/topics/i18n/
