@@ -1,0 +1,27 @@
+{% include 'unregistered_navbar.html' %}
+{# Load the tag library #}
+
+
+{% load bootstrap4 %}
+{% bootstrap_javascript %}
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+
+{# Display django.contrib.messages as Bootstrap alerts #}
+{% bootstrap_messages %}
+
+{# Display a form #}
+<br/>
+<div class="container">
+    <div class="row justify-content-center align-items-center">
+        <div class="card" style="width: 25rem;">
+            <h4 class="card-header bg-success text-white">Usuario registrado</h4>
+            <div class="card-body">
+                <div class="card-text">
+                    <p> Se ha enviado a su correo electronico un link para poder activar su cuenta.</p>
+                </div>
+                 <a href="{% url 'home' %}" class="btn btn-primary float-right">Ir al inicio</a>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,30 +1,83 @@
 <!-- templates/about.html -->
 {% extends 'base.html' %}
 {% block title %}
-    | Resultados
+    | Mis Predicciones
 {% endblock %}
 {% block content %}
-    <div>
-    <table>
-        <tr>
-            <th>
-                <td>Away Team</td>
-                <td></td>
-                <td></td>
-                <td>Home Team</td>
-            </th>
-        </tr>
-        {% for result in results %}
-            <tr>
-            <th>
-                <td>{{ result.get_away_team }}</td>
-                <td>{{ result.get_away_score }}</td>
-                <td>{{ result.get_home_score }}</td>
-                <td>{{ result.get_home_team }}</td>
-            </th>
-            </tr>
-        {% endfor %}
-    </table>
-    </div>
+    <br/>
+    <div class="row">
+        <div class="col">
+        </div>
+        <div class="col-8">
+            <div class="card">
+                <div class="card-body">
+                    <br/>
+                    <div class="input-group mb-3">
+                        <select class="custom-select" id="inputGroupSelect02">
+                            <option selected>Seleccione el usuario...</option>
+                            {% for user in users %}
+                                <option>{{ user.username }}</option>
+                            {% endfor %}
+                        </select>
+                        <select class="custom-select" id="inputGroupSelect02">
+                            <option selected>Seleccione la semana...</option>
+                            {% for week in weeks %}
+                            <option>{{ week }}</option>
+                            {% endfor %}
+                        </select>
+                        <div class="input-group-append">
+                            <label class="input-group-text" for="inputGroupSelect02" onclick="searchResults()">Buscar Predicciones</label>
+                        </div>
+                    </div>
+                    <div id="resultsForm">
 
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+        </div>
+    </div>
+    <script>
+        function create_result_table(data, cb){
+            var resultTable = '<table class="table" id="resultsTable" style="text-align: center;">' +
+                '<tr class="row">' +
+                '<th class="col-sm-4">Away Team</th>' +
+                '<th class="col-sm-2">Away Score</th>' +
+                '<th class="col-sm-2">Home Score</th>' +
+                '<th class="col-sm-4">Home Team</th></tr>';
+            data.games.forEach(function(game){
+                game = $.parseJSON(game);
+                resultTable = resultTable + "<tr id=\""+game.id+"\" class=\"row\">" +
+                    "<td class=\"col-sm-4\">" + game.away_team.name + "</td>" +
+                    "<td class=\"col-sm-2\">" + game.away_team.score + "</td>" +
+                    "<td class=\"col-sm-2\">" + game.home_team.score + "</td>" +
+                    "<td class=\"col-sm-4\">" + game.home_team.name + "</td>" +
+                    "</tr>"
+            });
+            resultTable = resultTable + '</table>';
+            cb(resultTable);
+        }
+
+        function searchResults(){
+            week = $('#inputGroupSelect02').val();
+            url = window.location.pathname;
+            $.ajax({
+                type: "POST",
+                contentType: "application/json",
+                url: url,
+                data: JSON.stringify({
+                    week: week
+                }),
+                dataType: "json",
+                success: function(data){
+                    create_result_table(data, function(table){
+                        $('#resultsForm').html(table);
+                        $('#savePredictions').removeClass('disabled');
+                    });
+                }
+            });
+        }
+
+    </script>
 {% endblock %}

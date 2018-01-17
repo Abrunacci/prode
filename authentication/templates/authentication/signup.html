@@ -1,0 +1,38 @@
+{% include 'unregistered_navbar.html' %}
+{# Load the tag library #}
+
+
+{% load bootstrap4 %}
+{% bootstrap_javascript %}
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+
+{# Display django.contrib.messages as Bootstrap alerts #}
+
+
+{# Display a form #}
+<br/>
+<div class="container">
+<div class="row justify-content-center align-items-center">
+
+<div class="card" style="width: 25rem;">
+  <div class="card-header">
+    Registro de usuario
+  </div>
+<div class="card-body">
+        <span class="help-block">
+            <p class="text-danger">{% for error in form.title.errors %}{{ error }}{% endfor %}</p>
+        </span>
+        <form action="{% url 'signup' %}" method="post" class="form">
+          {% csrf_token %}
+          {% bootstrap_form form %}
+          {% buttons %}
+            <button type="submit" class="btn btn-primary">Submit
+
+            </button>
+          {% endbuttons %}
+        </form>
+    </div>
+</div>
+</div>
+</div>

@@ -49,7 +49,8 @@ INSTALLED_APPS = [
     'weeks',
     'games',
     'results',
-    'accounts',
+    'authentication',
+    'account'
 ]
 
 MIDDLEWARE = [
@@ -119,7 +120,12 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 ACCOUNT_ACTIVATION_DAYS = 7
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'soporte@bitson.com.ar'
+EMAIL_HOST_PASSWORD = 'J7FKa8<G'
+EMAIL_PORT = 587
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.0/topics/i18n/
@@ -139,3 +145,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATIC_ROOT = 'C:/Users/Broski/PycharmProjects/Music/static'
+
+MEDIA_ROOT = 'C:/Users/Broski/PycharmProjects/Music/upload'
+
+STATICFILES_DIRS = (
+  os.path.join(BASE_DIR, 'static/'),
+)

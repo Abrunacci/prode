@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% load i18n static %}
+
+{% block title %} | Perfil {% endblock %}
+
+{% block javascript %}
+{% endblock %}
+
+{% block content %}
+    <br/>
+    <div class="container" style="align-content: center">
+        <div class="row justify-content-center align-items-center">
+            <div class="card">
+                <h3 class="card-header">Cambiar contraseña</h3>
+                <div class="card-body">
+                    {% if not user.has_usable_password %}
+                    <div class="alert alert-warning">
+                        No ha definido una contraseña.
+                    </div>
+                    {% endif %}
+                    <form role="form" class="form-horizontal" method="post" action="{% url 'password' %}">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <button type="submit" class="btn btn-primary">Cambiar contraseña</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
