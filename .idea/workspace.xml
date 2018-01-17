@@ -1,69 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d92de38c-945f-4159-a919-cb456f2d74d9" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/account/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/account/admin.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/account/apps.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/account/forms.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/account/models.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/account/static/css/profile.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/account/templates/account/profile.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/account/tests.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/account/urls.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/account/views.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/authentication/apps.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/authentication/forms.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/authentication/migrations/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/authentication/models.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/authentication/templates/authentication/account_activation_email.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/authentication/templates/authentication/account_activation_invalid.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/authentication/templates/authentication/account_activation_sent.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/authentication/templates/authentication/login.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/authentication/templates/authentication/password.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/authentication/templates/authentication/password_change.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/authentication/templates/authentication/password_change_done.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/authentication/templates/authentication/password_reset.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/authentication/templates/authentication/password_reset_complete.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/authentication/templates/authentication/password_reset_confirm.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/authentication/templates/authentication/password_reset_done.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/authentication/templates/authentication/password_reset_email.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/authentication/templates/authentication/password_reset_subject.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/authentication/templates/authentication/signup.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/authentication/tests/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/authentication/tests/test_form_signup.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/authentication/tests/test_mail_password_reset.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/authentication/tests/test_templatetags.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/authentication/tests/test_view_password_change.py.bak" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/authentication/tests/test_view_password_reset.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/authentication/tests/test_view_signup.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/authentication/tokens.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/authentication/urls.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/authentication/views.py" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/accounts/admin.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/accounts/apps.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/accounts/forms.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/accounts/migrations/0001_initial.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/accounts/models.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/accounts/templates/account_activation_email.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/accounts/templates/account_activation_invalid.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/accounts/templates/account_activation_sent.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/accounts/templates/signup.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/accounts/tests.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/accounts/tokens.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/accounts/urls.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/accounts/views.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/accounts/__init__.py" afterPath="$PROJECT_DIR$/account/migrations/__init__.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/accounts/migrations/__init__.py" afterPath="$PROJECT_DIR$/authentication/__init__.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/home/templates/home.html" afterPath="$PROJECT_DIR$/home/templates/home.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/home/templates/rules.html" afterPath="$PROJECT_DIR$/home/templates/rules.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/prode/settings.py" afterPath="$PROJECT_DIR$/prode/settings.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/prode/urls.py" afterPath="$PROJECT_DIR$/prode/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/results/templates/all_results.html" afterPath="$PROJECT_DIR$/results/templates/all_results.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/base.html" afterPath="$PROJECT_DIR$/templates/base.html" />
-    </list>
+    <list default="true" id="d92de38c-945f-4159-a919-cb456f2d74d9" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -100,7 +38,7 @@
         <entry file="file://$PROJECT_DIR$/home/templates/home.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="255">
-              <caret line="39" column="26" lean-forward="true" selection-start-line="28" selection-start-column="16" selection-end-line="39" selection-end-column="26" />
+              <caret line="39" column="26" lean-forward="false" selection-start-line="28" selection-start-column="16" selection-end-line="39" selection-end-column="26" />
               <folding>
                 <element signature="e#395#420#0#HTML" expanded="true" />
                 <element signature="e#467#493#0#HTML" expanded="true" />
@@ -781,7 +719,7 @@
     <entry file="file://$PROJECT_DIR$/home/templates/home.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
-          <caret line="39" column="26" lean-forward="true" selection-start-line="28" selection-start-column="16" selection-end-line="39" selection-end-column="26" />
+          <caret line="39" column="26" lean-forward="false" selection-start-line="28" selection-start-column="16" selection-end-line="39" selection-end-column="26" />
           <folding>
             <element signature="e#395#420#0#HTML" expanded="true" />
             <element signature="e#467#493#0#HTML" expanded="true" />
