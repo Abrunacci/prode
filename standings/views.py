@@ -34,10 +34,12 @@ def get_weekly_standings():
 def get_user_points(request, user_id):
     settings = Settings.objects.get(id=1)
     user_points = dict()
+    weekly_points = Weekly.objects.filter(user_id=user_id, week_id=settings.current_week_id).first()
+    general_points = General.objects.filter(user_id=user_id).first()
     if request.is_ajax():
         user_points = {
-            'weekly': Weekly.objects.filter(user_id=user_id, week_id=settings.current_week_id).first().get_total_points(),
-            'general': General.objects.filter(user_id=user_id).first().get_total_points()
+            'weekly': weekly_points.get_total_points() if weekly_points else 0,
+            'general': general_points.get_total_points() if general_points else 0
         }
     return user_points
 

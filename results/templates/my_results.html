@@ -141,7 +141,12 @@
                                 $('#savePredictions').attr('disabled', true);
                             }
                         });
-                    } else {
+                    } else if (data.error != undefined){
+                        $('#resultsForm').html("<p>"+data.error+"</p>");
+                        if (!$('#savePredictions').prop('disabled')){
+                            $('#savePredictions').attr('disabled', true);
+                        }
+                    }else {
                         $('#resultsForm').html("<p>No se encontraron partidos.</p>");
                         if (!$('#savePredictions').prop('disabled')){
                             $('#savePredictions').attr('disabled', true);

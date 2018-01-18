@@ -25,7 +25,7 @@ class Game(models.Model):
                 'name': self.away_team.name,
                 'id': self.away_team_id,
                 'score': self.away_team_score
-            },
+            }
         }
         return json.dumps(data)
 

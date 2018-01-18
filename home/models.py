@@ -7,9 +7,9 @@ class Settings(models.Model):
     current_week = models.ForeignKey('weeks.Week', on_delete=models.CASCADE)
 
 
-def toppings_changed(sender, **kwargs):
+def generate_standings(sender, **kwargs):
     from standings.views import generate_general_standings, generate_weekly_standings
     generate_weekly_standings()
     generate_general_standings()
 
-post_save.connect(toppings_changed, sender=Settings)
+post_save.connect(generate_standings, sender=Settings)

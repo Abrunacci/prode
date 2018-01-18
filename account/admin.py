@@ -23,14 +23,9 @@ class UserAdmin(BaseUserAdmin):
     """Define a new User admin."""
 
     inlines = (ProfileInline, )
-    list_display = ('username', 'email', 'first_name', 'last_name', 'is_staff', 'get_location')
+    list_display = ('username', 'email', 'first_name', 'last_name', 'is_staff', 'is_active')
     list_select_related = ('profile', )
 
-    def get_location(self, instance):
-        """Return `location` from Profile."""
-        return instance.profile.location
-
-    get_location.short_description = 'Location'
 
 
 # re-register UserAdmin

@@ -2,12 +2,14 @@ from django.shortcuts import render
 from django.views.generic import TemplateView
 from django.views.decorators.csrf import csrf_exempt
 from django.forms.models import model_to_dict
+from django.contrib.auth.models import User
 from django.http import JsonResponse
 import json
 # Create your views here.
 from .models import Result
 from weeks.models import Week
 from games.models import Game
+from home.models import Settings
 
 
 def all_results(request):
@@ -23,9 +25,17 @@ def my_results(request):
             week_id = json_data.get('week')
             week = Week.objects.get(id=week_id)
             results_list = get_results_from_table(week.id, json_data.get('user_id'))
+            current_week = Settings.objects.get(id=1)
+            if current_week.current_week_id > week.id:
+                return JsonResponse({'error': 'No se pueden cargar predicciones de fechas anteriores a la actual.'})
+            from django.utils import timezone
+            time = timezone.now()
             if not results_list:
-                games = Game.objects.filter(week=week.id)
-                games_list = [game.to_dict() for game in games]
+                games = Game.objects.filter(week=week.id, finished=False)
+                games_list = list()
+                for game in games:
+                    if game.game_day > time:
+                        games_list.append(game.to_dict())
                 if not games_list:
                     return JsonResponse({})
                 return JsonResponse({"games": games_list})
@@ -35,6 +45,32 @@ def my_results(request):
                   'my_results.html',
                   {
                       'weeks': weeks
+                  })
+
+
+@csrf_exempt
+def other_user_results(request):
+    if request.is_ajax():
+        if request.method == 'POST':
+            current_week = Settings.objects.get(id=1)
+            json_data = json.loads(request.body)
+            current_user_results = get_results_from_table(week_id=json_data.get('week'),
+                                                          user_id=json_data.get('current_user'))
+            if not current_user_results:
+                if current_week.current_week_id <= int(json_data.get('week')):
+                    return JsonResponse({'error': 'Debe cargar los resultados de la semana deseada para poder ver los de los rivales.'})
+            other_user_results = get_results_from_table(week_id=json_data.get('week'),
+                                                        user_id=json_data.get('user_id'))
+            if not other_user_results:
+                return JsonResponse({'error': 'El usuario no ha cargado los resultados de la semana seleccionada.'})
+            return JsonResponse({'results': other_user_results})
+    weeks = Week.objects.all()
+    users = User.objects.all()
+    return render(request,
+                  'all_results.html',
+                  {
+                      'weeks': weeks,
+                      'users': users
                   })
 
 
