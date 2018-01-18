@@ -48,3 +48,15 @@ class Game(models.Model):
 
     def get_home_team(self):
         return self.home_team.name
+
+    def get_winner(self):
+        if self.away_team_score > self.home_team_score:
+            return self.away_team.name
+        if self.home_team_score > self.away_team_score:
+            return self.home_team.name
+
+    def get_difference(self):
+        if self.away_team_score > self.home_team_score:
+            return self.away_team_score - self.home_team_score
+        if self.home_team_score > self.away_team_score:
+            return self.home_team_score - self.away_team_score

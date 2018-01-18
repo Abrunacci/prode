@@ -50,7 +50,8 @@ INSTALLED_APPS = [
     'games',
     'results',
     'authentication',
-    'account'
+    'account',
+    'standings'
 ]
 
 MIDDLEWARE = [

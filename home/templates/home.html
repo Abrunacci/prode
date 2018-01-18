@@ -12,12 +12,12 @@
                 <div class="card-body">
                     <table>
                         <tr>
-                            <td style="text-align: left;">Semanal:</td>
-                            <td style="text-align: right;"><strong>200</strong></td>
+                            <td style="text-align: left;">Semanal: </td>
+                            <td style="text-align: right;"> <strong><div id="userWeekPoints"></div></strong></td>
                         </tr>
                         <tr>
-                            <td style="text-align: left;">Totales:</td>
-                            <td style="text-align: right;"><strong>20000</strong></td>
+                            <td style="text-align: left;">Totales: </td>
+                            <td style="text-align: right;"> <strong><div id="userGeneralPoints"></div></strong></td>
                         </tr>
                     </table>
                 </div>
@@ -26,125 +26,78 @@
     <div class="col-6">
         <div class="card">
             <h5 class="card-header">Tabla General</h5>
-                <table class="table">
-                  <thead>
-                    <tr>
-                      <th>#</th>
-                      <th>Usuario</th>
-                      <th>A</th>
-                      <th>E</th>
-                                              <th>D</th>
-                      <th>T</th>
-
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <th scope="row">1</th>
-                      <td>Mark</td>
-                      <td>20</td>
-                      <td>30</td>
-                                              <td>30</td>
-                      <td>10000</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">2</th>
-                      <td>Mark</td>
-                      <td>20</td>
-                      <td>30</td>
-                                              <td>30</td>
-                      <td>1000</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">3</th>
-                      <td>Mark</td>
-                      <td>20</td>
-                      <td>30</td>
-                                              <td>30</td>
-                      <td>900</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">4</th>
-                      <td>Mark</td>
-                      <td>20</td>
-                      <td>30</td>
-                                            <td>30</td>
-                        <td>100</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">5</th>
-                      <td>Mark</td>
-                      <td>20</td>
-                      <td>30</td>
-                      <td>30</td>
-                      <td>10</td>
-                    </tr>
-                  </tbody>
-                </table>
-
+            <div id="generalTable"></div>
         </div>
     </div>
     <div class="col-4">
         <div class="card ">
             <h5 class="card-header ">Tabla Semanal</h5>
-                <table class="table">
-                  <thead>
-                    <tr>
-                      <th>#</th>
-                      <th>Usuario</th>
-                      <th>A</th>
-                      <th>E</th>
-                                              <th>D</th>
-                      <th>T</th>
-
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <th scope="row">1</th>
-                      <td>Mark</td>
-                      <td>20</td>
-                      <td>30</td>
-                                              <td>30</td>
-                      <td>10000</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">2</th>
-                      <td>Mark</td>
-                      <td>20</td>
-                      <td>30</td>
-                                              <td>30</td>
-                      <td>1000</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">3</th>
-                      <td>Mark</td>
-                      <td>20</td>
-                      <td>30</td>
-                                              <td>30</td>
-                      <td>900</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">4</th>
-                      <td>Mark</td>
-                      <td>20</td>
-                      <td>30</td>
-                                            <td>30</td>
-                        <td>100</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">5</th>
-                      <td>Mark</td>
-                      <td>20</td>
-                      <td>30</td>
-                      <td>30</td>
-                      <td>10</td>
-                    </tr>
-                  </tbody>
-                </table>
-
+            <div id="weeklyTable"></div>
         </div>
     </div>
     </div>
 </div>
+    <script>
+
+    function generate_table(data, cb){
+        var table = '<table class="table">' +
+            '<thead>' +
+            '<tr>' +
+            '<th>#</th>' +
+            '<th>Usuario</th>' +
+            '<th>A</th>' +
+            '<th>E</th>' +
+            '<th>D</th>' +
+            '<th>T</th>' +
+            '</tr>' +
+            '</thead>' +
+            '<tbody>';
+        var current_user = "{{ user.username }}";
+        data.forEach(function(user, i){
+            if (user.username === current_user){
+                table += "<tr class=\"table-danger\">";
+            } else {
+                table += "<tr>";
+            }
+            var position = i+1;
+            table += "<td scope=\"row\">" + position + "</td>" +
+                "<td>" + user.username + "</td>" +
+                "<td>" + user.winner_hits + "</td>" +
+                "<td>" + user.exact_hits + "</td>"+
+                "<td>" + user.difference_hits + "</td>"+
+                "<td>" + user.total_points + "</td></tr>";
+        });
+        table += '</tbody>' +
+            '</table>';
+        cb(table);
+    }
+
+    function loadTables(){
+            url = "{% url 'get_tables' %}";
+            data = { user_id: "{{user.pk}}"};
+            $.ajax({
+                type: "POST",
+                contentType: "application/json",
+                url: url,
+                data: JSON.stringify(data),
+                dataType: "json",
+                success: function(data){
+                    generate_table(data.weekly, function(table){
+                        $('#weeklyTable').html(table);
+                    });
+                    generate_table(data.general, function (table) {
+                            $('#generalTable').html(table);
+                    });
+
+                    $('#userWeekPoints').html(data.user_points.weekly);
+                    $('#userGeneralPoints').html(data.user_points.general);
+
+                }
+            });
+        }
+
+        $(document).ready(function (){
+            loadTables();
+        })
+    </script>
 {% endblock %}

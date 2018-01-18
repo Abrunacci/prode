@@ -16,7 +16,7 @@
                         <select class="custom-select" id="inputGroupSelect02">
                             <option selected>Seleccione la semana...</option>
                             {% for week in weeks %}
-                            <option>{{ week }}</option>
+                            <option value="{{ week.id }}">{{ week }}</option>
                             {% endfor %}
                         </select>
                         <div class="input-group-append">
@@ -27,7 +27,7 @@
 
                     </div>
                     <div class="float-right">
-                        <button type="button" id="savePredictions" onclick="saveGamesPredictions()" class="btn btn-light disabled">Guardar predicciones</button>
+                        <button type="button" id="savePredictions" onclick="saveGamesPredictions()" class="btn btn-light" disabled="true">Guardar predicciones</button>
                     </div>
                 </div>
             </div>
@@ -37,20 +37,33 @@
     </div>
     <script>
         function saveGamesPredictions(){
-            var games = [];
+            var results = [];
+            url = "{% url 'save_results' %}";
             $("#resultsTable .row").each(function(){
                 if (this.hasAttribute('id')){
                     var game_id = this.id;
                     var game_prediction = {
                         game_id: game_id,
+                        week_id: $('#inputGroupSelect02').val(),
                         home_team_score: $('#home-'+game_id).val(),
                         away_team_score: $('#away-'+game_id).val(),
                         user_id: "{{ user.pk }}"
                     };
-                    games.push(game_prediction);
+                    results.push(game_prediction);
                 }
             });
-            console.log(games);
+            $.ajax({
+                type: "POST",
+                contentType: "application/json",
+                url: url,
+                data: JSON.stringify({
+                    results: results
+                }),
+                dataType: "json",
+                success: function(data){
+                    searchGames();
+                }
+            });
         }
 
         function create_result_table(data, cb){
@@ -81,6 +94,26 @@
             cb(resultTable);
         }
 
+        function create_result_table_form(data, cb){
+            var resultTable = '<table class="table" id="resultsTable" style="text-align: center;">' +
+                '<tr class="row">' +
+                '<th class="col-sm-4">Away Team</th>' +
+                '<th class="col-sm-2">Away Score</th>' +
+                '<th class="col-sm-2">Home Score</th>' +
+                '<th class="col-sm-4">Home Team</th></tr>';
+            data.results.forEach(function(result){
+                result = $.parseJSON(result);
+                resultTable = resultTable + "<tr id=\""+result.id+"\" class=\"row\">" +
+                    "<td class=\"col-sm-4\">" + result.away_team.name + "</td>" +
+                    "<td class=\"col-sm-2\">" + result.away_team.score + "</td>" +
+                    "<td class=\"col-sm-2\">" + result.home_team.score + "</td>" +
+                    "<td class=\"col-sm-4\">" + result.home_team.name + "</td>" +
+                    "</tr>"
+            });
+            resultTable = resultTable + '</table>';
+            cb(resultTable);
+        }
+
         function searchGames(){
             week = $('#inputGroupSelect02').val();
             url = window.location.pathname;
@@ -89,14 +122,32 @@
                 contentType: "application/json",
                 url: url,
                 data: JSON.stringify({
-                    week: week
+                    week: week,
+                    user_id: "{{ user.pk }}"
                 }),
                 dataType: "json",
                 success: function(data){
-                    create_result_table(data, function(table){
-                        $('#resultsForm').html(table);
-                        $('#savePredictions').removeClass('disabled');
-                    });
+                    if (data.games != undefined){
+                        create_result_table(data, function(table){
+                            $('#resultsForm').html(table);
+                            if ($('#savePredictions').prop('disabled')){
+                                $('#savePredictions').attr('disabled', false);
+                            }
+                        });
+                    } else if (data.results != undefined){
+                        create_result_table_form(data, function(table){
+                            $('#resultsForm').html(table);
+                            if (!$('#savePredictions').prop('disabled')){
+                                $('#savePredictions').attr('disabled', true);
+                            }
+                        });
+                    } else {
+                        $('#resultsForm').html("<p>No se encontraron partidos.</p>");
+                        if (!$('#savePredictions').prop('disabled')){
+                            $('#savePredictions').attr('disabled', true);
+                        }
+                    }
+
                 }
             });
         }
