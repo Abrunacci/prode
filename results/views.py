@@ -60,7 +60,8 @@ def other_user_results(request):
                 if current_week.current_week_id <= int(json_data.get('week')):
                     return JsonResponse({'error': 'Debe cargar los resultados de la semana deseada para poder ver los de los rivales.'})
             other_user_results = get_results_from_table(week_id=json_data.get('week'),
-                                                        user_id=json_data.get('user_id'))
+                                                        user_id=json_data.get('user_id'),
+                                                        processed=True)
             if not other_user_results:
                 return JsonResponse({'error': 'El usuario no ha cargado los resultados de la semana seleccionada.'})
             return JsonResponse({'results': other_user_results})
@@ -74,8 +75,8 @@ def other_user_results(request):
                   })
 
 
-def get_results_from_table(week_id, user_id):
-    results = Result.objects.filter(week=week_id, user=user_id)
+def get_results_from_table(week_id, user_id, processed=False):
+    results = Result.objects.filter(week=week_id, user=user_id, processed=processed)
     results_list = [result.to_dict() for result in results]
     return results_list
 
