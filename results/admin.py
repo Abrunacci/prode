@@ -4,4 +4,7 @@ from django.contrib import admin
 from .models import Result
 
 
-admin.site.register(Result)
+class ResultAdmin(admin.ModelAdmin):
+    list_display = ('id', 'week', 'user', 'game')
+
+admin.site.register(Result, ResultAdmin)
