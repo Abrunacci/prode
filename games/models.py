@@ -25,7 +25,7 @@ class Game(models.Model):
                 'name': self.away_team.name,
                 'id': self.away_team_id,
                 'score': self.away_team_score
-            },
+            }
         }
         return json.dumps(data)
 
@@ -48,3 +48,15 @@ class Game(models.Model):
 
     def get_home_team(self):
         return self.home_team.name
+
+    def get_winner(self):
+        if self.away_team_score > self.home_team_score:
+            return self.away_team.name
+        if self.home_team_score > self.away_team_score:
+            return self.home_team.name
+
+    def get_difference(self):
+        if self.away_team_score > self.home_team_score:
+            return self.away_team_score - self.home_team_score
+        if self.home_team_score > self.away_team_score:
+            return self.home_team_score - self.away_team_score
