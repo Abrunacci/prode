@@ -1,5 +1,6 @@
 from django.db import models
 import json
+from django.db.models.signals import post_save
 # Create your models here.
 
 
@@ -13,21 +14,7 @@ class Game(models.Model):
     finished = models.BooleanField(default=False)
 
     def __str__(self):
-        data = {
-            'id': self.id,
-            'week': self.week.description,
-            'home_team': {
-                'name': self.home_team.name,
-                'id': self.home_team_id,
-                'score': self.away_team_score
-            },
-            'away_team': {
-                'name': self.away_team.name,
-                'id': self.away_team_id,
-                'score': self.away_team_score
-            }
-        }
-        return json.dumps(data)
+        return '%s: %s - %s' % (self.week.description, self.away_team.name, self.home_team.name)
 
     def to_dict(self):
         data = {
@@ -60,3 +47,12 @@ class Game(models.Model):
             return self.away_team_score - self.home_team_score
         if self.home_team_score > self.away_team_score:
             return self.home_team_score - self.away_team_score
+
+
+def generate_standings(sender, **kwargs):
+    game_instance = kwargs.get('instance')
+    if game_instance.finished:
+        from standings.views import generate_weekly_standings
+        generate_weekly_standings()
+
+post_save.connect(generate_standings, sender=Game)

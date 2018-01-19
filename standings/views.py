@@ -48,7 +48,7 @@ def generate_weekly_standings():
     settings = Settings.objects.get(id=1)
     games = Game.objects.filter(week_id=settings.current_week_id, finished=True)
     for user in User.objects.filter(is_superuser=False).all():
-        current_stand = Weekly.objects.filter(user=user.id, week_id=settings.current_week_id)
+        current_stand = Weekly.objects.filter(user=user.id, week_id=settings.current_week_id).first()
         if not current_stand:
             current_stand = Weekly()
         for game in games:

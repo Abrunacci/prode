@@ -1,10 +1,12 @@
 # Created by .ignore support plugin (hsz.mobi)
 ### Python template
+db.sqlite3
 # Byte-compiled / optimized / DLL files
 __pycache__/
+prode/__pycache__/
 *.py[cod]
 *$py.class
-
+.idea/
 # C extensions
 *.so
 

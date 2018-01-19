@@ -25,12 +25,7 @@ SECRET_KEY = 'dd^bf32*5uh+otm+#qi*o*9g@8hj_q_59_+!-azjo3#vs^!)j_'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [
-    '0.0.0.0',
-    'localhost',
-    '127.0.0.1',
-    '192.168.0.2',
-]
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -96,8 +91,12 @@ LOGOUT_REDIRECT_URL = '/'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'dbqfit5tfm257q',
+        'USER': 'saiaqvilhjcuma',
+        'PASSWORD': '939a979fb961c9a89d846535c470137e09f9bf39178d2af1d2b036c9ef30edc1',
+        'HOST': 'ec2-107-22-229-213.compute-1.amazonaws.com',
+        'PORT': '5432',
     }
 }
 
