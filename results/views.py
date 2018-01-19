@@ -63,7 +63,7 @@ def other_user_results(request):
                                                         user_id=json_data.get('user_id'),
                                                         processed=True)
             if not other_user_results:
-                return JsonResponse({'error': 'El usuario no ha cargado los resultados de la semana seleccionada.'})
+                return JsonResponse({'error': 'El usuario no ha cargado los resultados de la semana seleccionada o los partidos no han finalizado.'})
             return JsonResponse({'results': other_user_results})
     weeks = Week.objects.all()
     users = User.objects.all()
