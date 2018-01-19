@@ -3,109 +3,88 @@
 <head>
     {% load static %}
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
     <title>NFL Prode {% block title %}{% endblock %}</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
     <link rel="icon" type="image/png" href="{% static "img/favicon.png" %}">
 
-<style>
-    #back2Top {
-    width: 40px;
-    line-height: 40px;
-    overflow: hidden;
-    z-index: 999;
-    display: none;
-    cursor: pointer;
-    -moz-transform: rotate(270deg);
-    -webkit-transform: rotate(270deg);
-    -o-transform: rotate(270deg);
-    -ms-transform: rotate(270deg);
-    transform: rotate(270deg);
-    position: fixed;
-    bottom: 50px;
-    right: 0;
-    background-color: #DDD;
-    color: #555;
-    text-align: center;
-    font-size: 30px;
-    text-decoration: none;
-}
-#back2Top:hover {
-    background-color: #DDF;
-    color: #000;
-}
-</style>
+    <!-- Bootstrap 4 -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
 
+    <!-- custom.css -->
+    <link rel="stylesheet" href="{% static "css/custom.css" %}">
 </head>
-<body class="bg-dark">
-<header>
-
-</header>
-{% if user.is_authenticated %}
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="{% url 'home' %}">NFL Prode</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'my_results' %}">Mis Predicciones <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'results' %}">Predicciones</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'rules' %}">Reglamento</a>
-      </li>
-    </ul>
-    <ul class="navbar-nav my-2 my-lg-0">
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'about' %}">About</a>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          {{ user.username }}
+<body>
+    {% if user.is_authenticated %}
+    <nav class="navbar navbar-expand-lg navbar-full navbar-dark bg-dark">
+        <a class="navbar-brand" href="#" disabled>
+            <img src="{% static 'img/NFL-logo.png' %}" width="27" height="30" class="d-inline-block align-top" alt="">
+            Prode
         </a>
-        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="{% url 'profile' %}">Cambiar contraseña</a>
-            <div class="divider"></div>
-          <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
-        </div>
-      </li>
-    </ul>
-  </div>
-</nav>
-<div class="container">
-    {% block content %}
-    {% endblock %}
-</div>
-{% else %}
-    {% include 'unregistered_navbar.html' %}
-    <br/>
 
-    <div class="row">
-        <div class="col-4"></div>
-        <div class="col-4">
-            <div class="card">
-                <h3 class="card-header bg-dark text-white">No se encuentra registrado.</h3>
-                <div class="card-body">
-                    <p>Para poder usar esta plataforma usted debe iniciar sesión.</p>
-                    <p>Si no posee una cuenta, haga click en 'Registrarse'</p>
-                    <a href="{% url 'login' %}" class="btn btn-primary float-left">Iniciar sesión</a>
-                    <a href="{% url 'signup' %}" class="btn btn-success float-right">Registrarse</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'my_results' %}">Mis Predicciones <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'results' %}">Predicciones</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'rules' %}">Reglamento</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav my-2 my-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'about' %}">About</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{ user.username }}
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{% url 'profile' %}">Cambiar contraseña</a>
+                        <div class="divider"></div>
+                        <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <section id="main-section">
+        <div id="main-section-caption">
+            <div class="container">
+                {% block content %}
+                <div class="col-sm-10 col-sm-offset-1">
+
+                </div>
+                {% endblock %}
+            </div>
+        </div>
+    </section>
+    {% else %}
+    {% load static %}
+    {% include 'unregistered_navbar.html' %}
+    <section id="main-section-unregistered">
+        <div id="main-section-caption">
+            <div class="container">
+                <div class="col-sm-10 col-sm-offset-1">
+
                 </div>
             </div>
         </div>
-        <div class="col-4"></div>
-    </div>
-
-{% endif %}
-<a id="back2Top" title="Back to top" href="#">&#10148;</a>
+    </section>
+    {% endif %}
+    <!-- Jquery first, then Bootstrap.js -->
+    <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
 </body>
+
 <script>
     /*Scroll to top when arrow up clicked BEGIN*/
 $(window).scroll(function() {

@@ -92,10 +92,10 @@ LOGOUT_REDIRECT_URL = '/'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'dbqfit5tfm257q',
-        'USER': 'saiaqvilhjcuma',
-        'PASSWORD': '939a979fb961c9a89d846535c470137e09f9bf39178d2af1d2b036c9ef30edc1',
-        'HOST': 'ec2-107-22-229-213.compute-1.amazonaws.com',
+        'NAME': 'nfl-prode',
+        'USER': 'nfl-prode',
+        'PASSWORD': 'C6z15g9B7mxkHEMK',
+        'HOST': 'localhost',
         'PORT': '5432',
     }
 }
