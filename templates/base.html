@@ -70,13 +70,27 @@
     {% load static %}
     {% include 'unregistered_navbar.html' %}
     <section id="main-section-unregistered">
-        <div id="main-section-caption">
-            <div class="container">
-                <div class="col-sm-10 col-sm-offset-1">
-
+    <div class="row">
+        <div id="main-section-message">
+            <div class="col-lg-6 col-sm-10 col-sm-offset-1 col-10 col-offset-1">
+                <div class="card">
+                    <div class="card-block">
+                        <h4 class="card-header">
+                            No se encuentra registrado.
+                        </h4>
+                        <div class="card-body">
+                            <p class="card-text">Para poder usar esta plataforma usted debe iniciar sesión.</p>
+                            <p class="card-text">Si no posee una cuenta, haga click en 'Registrarse'</p>
+                            <div class="card-block">
+                                <a href="{% url 'login' %}" class="btn btn-primary">Iniciar sesión</a>
+                                <a href="{% url 'signup' %}" class="btn btn-success">Registrarse</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+</div>
     </section>
     {% endif %}
     <!-- Jquery first, then Bootstrap.js -->

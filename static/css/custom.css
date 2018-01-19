@@ -18,9 +18,15 @@ body {
 #main-section-unregistered {
     background: #222 url('../img/Football_field.jpg') center center no-repeat;
     background-size: cover;
-    color: white;
+    color: black;
     height: 100%;
     text-align: center;
+}
+
+#main-section-message {
     display: flex;
-    align-items: center;
+    flex-flow: row wrap;
+    justify-content: center;
+    padding-top: 10%;
+    width:100%;
 }
