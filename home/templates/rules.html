@@ -4,129 +4,141 @@
     | Reglamento
 {% endblock %}
 {% block content %}
-<br/>
+    <section id="main-section">
+        <div class="container-fluid">
+            <div class="row standing-table text-dark">
+                <div class="col-sm-10 offset-sm-1">
+                    <div class="card">
+                        <h4 class="card-header">Ingreso de predicciones</h4>
+                        <div class="card-body" style="text-align: left">
+                            <div>
+                                <ol>
+                                    <li>Para ingresar sus predicciones el jugador debe ingresar en <a href="{% url 'my_results' %}"><strong>Mis Predicciones</strong></a>.</li>
+                                    <li>Seleccionar la semana que quiere ingresar al juego del listado desplegable y presionar <i>Buscar Partidos</i></li>
+                                    <li>Dentro del listado de partidos que aparecerá luego de 2, habrá 2 casillas para rellenar por partido, estas corresponden al puntaje del equipo local y al visitante (<i>Home-Away</i>)</li>
+                                    <li>Una vez ingresados todos los resultados, el jugador debe presionar <strong>Guardar predicciones</strong></li>
+                                </ol>
+                                <div class="alert alert-danger" role="alert">
+                                    <strong>IMPORTANTE!</strong> Una vez cargados los resultados no se podran editar. Si un partido figura como '0-0', sera cargado como resultado válido y no se podrá volver atras
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row standing-table text-dark">
+                <div class="col-sm-10 offset-sm-1">
+                    <div class="card">
+                        <h4 class="card-header">Asignación de puntos</h4>
+                        <div class="card-body" style="text-align: left">
+                            <div>
+                                <p>Existen varias maneras de sumar puntos.</p>
+                                <ul>
+                                    <li>Acertando el ganador del partido</li>
+                                    <li>Acertando la diferencia de puntos entre uno y otro</li>
+                                    <li>Acertando el resultado exacto del partido</li>
+                                </ul>
 
-<div class="card">
-    <h4 class="card-header">Ingreso de predicciones</h4>
-    <div class="card-body">
-        <div>
-            <ol>
-                <li>Para ingresar sus predicciones el jugador debe ingresar en <a href="{% url 'my_results' %}"><strong>Mis Predicciones</strong></a>.</li>
-                <li>Seleccionar la semana que quiere ingresar al juego del listado desplegable y presionar <i>Buscar Partidos</i></li>
-                <li>Dentro del listado de partidos que aparecerá luego de 2, habrá 2 casillas para rellenar por partido, estas corresponden al puntaje del equipo local y al visitante (<i>Home-Away</i>)</li>
-                <li>Una vez ingresados todos los resultados, el jugador debe presionar <strong>Guardar predicciones</strong></li>
-            </ol>
-            <div class="alert alert-danger" role="alert">
-                <strong>IMPORTANTE!</strong> Una vez cargados los resultados no se podran editar. Si un partido figura como '0-0', sera cargado como resultado válido y no se podrá volver atras
+                                <p>Los puntos son repartidos de la siguiente manera:</p>
+                                <ul>
+                                    <li>Acierto de ganador de partido: 1 pt</li>
+                                    <li>Acierto de diferencia de puntos del ganador al perdedor: 2 pts</li>
+                                    <li>Acierto de resultado exacto del partido: 3 pts</li>
+                                </ul>
+                                <p>Ejemplos:</p>
+                                El resultado del partido es 7-14
+                                <ul>
+                                    <li>Si el jugador ingresó como resultado 7-21, suma 1 pt por haber acertado el ganador </li>
+                                    <li>Si el jugador ingresó como resultado 14-21, suma 3 pts. 1 por acertar ganador, 2 por diferencia de pts</li>
+                                    <li>Si el jugador ingresó como resultado 7-14, suma 6 pts. 1 por acertar ganador, 2 por diferencia de pts, 3 por resultado exacto</li>
+                                    <li>Si el jugador ingresó como resultado 14-7, no suma puntos ya que no consiguió ningun acierto</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row standing-table text-dark">
+                <div class="col-sm-10 offset-sm-1">
+                    <div class="card">
+                        <h4 class="card-header">Consulta de predicciones</h4>
+                        <div class="card-body" style="text-align: left">
+                            <div>
+                                <ol>
+                                    <li>Para consultar otras predicciones el jugador debe presionar en <a href=""><strong>Predicciones</strong></a>.</li>
+                                    <li>Se debe seleccionar el usuario del que se quiere consultar las predicciones y la semana deseada, luego presionar <i>Buscar Predicciones</i></li>
+                                    <li>Solo se podran consultar predicciones de la semana vigente (o las siguientes) si el jugador tiene esas semanas cargadas en el sistema</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row standing-table text-dark">
+                <div class="col-sm-10 offset-sm-1">
+                    <div class="card">
+                        <h4 class="card-header">Entendiendo las tablas.</h4>
+                        <div class="card-body" style="text-align: left">
+                            <div>
+                                <ul>
+                                    <li>En la <a href="{% url 'home' %}"><strong>página principal</strong></a> se encuentran las 2 tablas de posiciones:</li>
+                                    <ol>
+                                        <li>La central es la tabla de posiciones general donde se suman todos los puntos obtenidos en la temporada</li>
+                                        <li>La semanal es la tabla que solo muestra los puntajes relacionados a la fecha en curso. Esta tabla se pondra en 0 cuando arranque cada fecha</li>
+                                    </ol>
+                                    <br/>
+                                    <li>En el encabezado de las tablas podemos observar lo siguiente:</li>
+                                    <table class="table table-sm table-bordered">
+                                        <thead>
+                                        <tr>
+                                            <th>1</th>
+                                            <th>Usuario</th>
+                                            <th>A</th>
+                                            <th>E</th>
+                                            <th>D</th>
+                                            <th>T</th>
+                                        </tr>
+                                        </thead>
+                                    </table>
+                                    <ul>
+                                        <li><strong>#</strong> Hace referencia a la posicion en la tabla</li>
+                                        <li><strong>Usuario</strong> Hace referencia al jugador </li>
+                                        <li><strong>A</strong> Cantidad de aciertos de ganador</li>
+                                        <li><strong>E</strong> Cantidad de aciertos de resultado exacto</li>
+                                        <li><strong>D</strong> Cantidad de aciertos de diferencia de puntos</li>
+                                        <li><strong>T</strong> Total de <strong>puntos</strong> acumulados</li>
+                                    </ul>
+                                    <br/>
+                                    <li>Ejemplo: Una fecha con un solo partido, un jugador es el unico en acertar el resultado exacto. En la tabla se veria de la siguiente manera:</li>
+                                    <table class="table table-sm table-bordered">
+                                        <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Usuario</th>
+                                            <th>A</th>
+                                            <th>E</th>
+                                            <th>D</th>
+                                            <th>T</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>#</td>
+                                            <td>FuckDallas</td>
+                                            <td>1</td>
+                                            <td>1</td>
+                                            <td>1</td>
+                                            <td>6</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</div>
-<br/>
-<div class="card">
-    <h4 class="card-header">Asignación de puntos</h4>
-    <div class="card-body">
-        <div>
-            <p>Existen varias maneras de sumar puntos.</p>
-            <ul>
-                <li>Acertando el ganador del partido</li>
-                <li>Acertando la diferencia de puntos entre uno y otro</li>
-                <li>Acertando el resultado exacto del partido</li>
-            </ul>
-
-            <p>Los puntos son repartidos de la siguiente manera:</p>
-            <ul>
-                <li>Acierto de ganador de partido: 1 pt</li>
-                <li>Acierto de diferencia de puntos del ganador al perdedor: 2 pts</li>
-                <li>Acierto de resultado exacto del partido: 3 pts</li>
-            </ul>
-            <p>Ejemplos:</p>
-            El resultado del partido es 7-14
-            <ul>
-                <li>Si el jugador ingresó como resultado 7-21, suma 1 pt por haber acertado el ganador </li>
-                <li>Si el jugador ingresó como resultado 14-21, suma 3 pts. 1 por acertar ganador, 2 por diferencia de pts</li>
-                <li>Si el jugador ingresó como resultado 7-14, suma 6 pts. 1 por acertar ganador, 2 por diferencia de pts, 3 por resultado exacto</li>
-                <li>Si el jugador ingresó como resultado 14-7, no suma puntos ya que no consiguió ningun acierto</li>
-            </ul>
-        </div>
-    </div>
-</div>
-<br/>
-<div class="card">
-    <h4 class="card-header">Consulta de predicciones</h4>
-    <div class="card-body">
-        <div>
-            <ol>
-                <li>Para consultar otras predicciones el jugador debe presionar en <a href=""><strong>Predicciones</strong></a>.</li>
-                <li>Se debe seleccionar el usuario del que se quiere consultar las predicciones y la semana deseada, luego presionar <i>Buscar Predicciones</i></li>
-                <li>Solo se podran consultar predicciones de la semana vigente (o las siguientes) si el jugador tiene esas semanas cargadas en el sistema</li>
-            </ol>
-        </div>
-    </div>
-</div>
-<br/>
-<div class="card">
-    <h4 class="card-header">Entendiendo las tablas.</h4>
-    <div class="card-body">
-        <div>
-            <ul>
-                <li>En la <a href="{% url 'home' %}"><strong>página principal</strong></a> se encuentran las 2 tablas de posiciones:</li>
-                <ol>
-                    <li>La central es la tabla de posiciones general donde se suman todos los puntos obtenidos en la temporada</li>
-                    <li>La semanal es la tabla que solo muestra los puntajes relacionados a la fecha en curso. Esta tabla se pondra en 0 cuando arranque cada fecha</li>
-                </ol>
-                <br/>
-                <li>En el encabezado de las tablas podemos observar lo siguiente:</li>
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th>1</th>
-                        <th>Usuario</th>
-                        <th>A</th>
-                        <th>E</th>
-                        <th>D</th>
-                        <th>T</th>
-                    </tr>
-                    </thead>
-                </table>
-                <ul>
-                    <li><strong>#</strong> Hace referencia a la posicion en la tabla</li>
-                    <li><strong>Usuario</strong> Hace referencia al jugador </li>
-                    <li><strong>A</strong> Cantidad de aciertos de ganador</li>
-                    <li><strong>E</strong> Cantidad de aciertos de resultado exacto</li>
-                    <li><strong>D</strong> Cantidad de aciertos de diferencia de puntos</li>
-                    <li><strong>T</strong> Total de <strong>puntos</strong> acumulados</li>
-                </ul>
-                <br/>
-                <li>Ejemplo: Una fecha con un solo partido, un jugador es el unico en acertar el resultado exacto. En la tabla se veria de la siguiente manera:</li>
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Usuario</th>
-                        <th>A</th>
-                        <th>E</th>
-                        <th>D</th>
-                        <th>T</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>#</td>
-                        <td>FuckDallas</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>6</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </ul>
-        </div>
-    </div>
-</div>
-<br/>
-
-
-
+    <div style="padding-bottom: 10%"></div>
+    </section>
 {% endblock %}

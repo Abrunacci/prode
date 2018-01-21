@@ -4,23 +4,30 @@
     | Reglamento
 {% endblock %}
 {% block content %}
-<br/>
-<div class="card">
-    <h4 class="card-header">Acerca de este sitio.</h4>
-    <div class="card-body">
-        <p class="card-text">
-            Este sitio fue desarrollado por <a href="mailto:abrunacci@bitson.group">Alejandro Brunacci</a> como un espacio de entretenimiento sin fines de lucro.
-        </p>
-        <p>
-            <i>NFL Prode</i> no se hace responsable por cualquier tipo de apuestas que se puedan llegar a aceptar por fuera de la plataforma.
-        </p>
-        <p> Si queres ayudar a mantener este sitio en linea, podes hacer tu donación aqui: <a mp-mode="dftl" href="https://www.mercadopago.com/mla/checkout/start?pref_id=221896441-8d312b3b-4e4e-418f-adce-60e851ffa1b0" name="MP-payButton" class='orange-ar-m-rn-none'>Donar</a>
-<script type="text/javascript">
-(function(){function $MPC_load(){window.$MPC_loaded !== true && (function(){var s = document.createElement("script");s.type = "text/javascript";s.async = true;s.src = document.location.protocol+"//secure.mlstatic.com/mptools/render.js";var x = document.getElementsByTagName('script')[0];x.parentNode.insertBefore(s, x);window.$MPC_loaded = true;})();}window.$MPC_loaded !== true ? (window.attachEvent ?window.attachEvent('onload', $MPC_load) : window.addEventListener('load', $MPC_load, false)) : null;})();
-</script></p>
-    </div>
-
-</div>
-     <br/>
-
+    <section id="main-section">
+        <div class="container-fluid">
+            <div class="row standing-table text-dark">
+                <div class="col-sm-10 offset-sm-1">
+                    <div class="card">
+                        <h4 class="card-header">Acerca de este sitio</h4>
+                        <div class="card-body" style="text-align: left">
+                            <p class="card-text">
+                                Este sitio fue desarrollado por <a href="mailto:abrunacci@bitson.group">Alejandro Brunacci</a> como un espacio de entretenimiento sin fines de lucro.
+                            </p>
+                            <p>
+                                <i>NFL Prode</i> no se hace responsable por cualquier tipo de apuestas que se puedan llegar a aceptar por fuera de la plataforma.
+                            </p>
+                            <p>
+                                Si queres ayudar a mantener este sitio en linea, podes hacer tu donación aqui: <a mp-mode="dftl" href="https://www.mercadopago.com/mla/checkout/start?pref_id=221896441-8d312b3b-4e4e-418f-adce-60e851ffa1b0" name="MP-payButton" class='orange-ar-m-rn-none'>Donar</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="padding-bottom: 10%"></div>
+    </section>
+    <script type="text/javascript">
+        (function(){function $MPC_load(){window.$MPC_loaded !== true && (function(){var s = document.createElement("script");s.type = "text/javascript";s.async = true;s.src = document.location.protocol+"//secure.mlstatic.com/mptools/render.js";var x = document.getElementsByTagName('script')[0];x.parentNode.insertBefore(s, x);window.$MPC_loaded = true;})();}window.$MPC_loaded !== true ? (window.attachEvent ?window.attachEvent('onload', $MPC_load) : window.addEventListener('load', $MPC_load, false)) : null;})();
+    </script>
 {% endblock %}

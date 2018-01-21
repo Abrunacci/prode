@@ -22,7 +22,7 @@
 <body>
     {% if user.is_authenticated %}
     <nav class="navbar navbar-expand-lg navbar-full navbar-dark bg-dark">
-        <a class="navbar-brand" href="#" disabled>
+        <a class="navbar-brand" href="{% url 'home' %}" disabled>
             <img src="{% static 'img/NFL-logo.png' %}" width="27" height="30" class="d-inline-block align-top" alt="">
             Prode
         </a>
@@ -90,8 +90,8 @@
     </div>
     </section>
     {% endif %}
+<a id="back2Top" title="Back to top" href="#">&#10148;</a>
 </body>
-
 <script>
     /*Scroll to top when arrow up clicked BEGIN*/
 $(window).scroll(function() {
@@ -111,4 +111,5 @@ $(document).ready(function() {
 
 });
 </script>
+
 </html>
