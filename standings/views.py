@@ -57,10 +57,10 @@ def generate_weekly_standings():
                 continue
             if game.get_winner() == user_results.get_winner():
                 current_stand.winner_hits += 1
-            if game.get_difference() == user_results.get_difference():
-                current_stand.difference_hits += 1
-            if game.home_team_score == user_results.home_score and game.away_team_score == user_results.away_score:
-                current_stand.exact_hits += 1
+                if game.get_difference() == user_results.get_difference():
+                    current_stand.difference_hits += 1
+                if game.home_team_score == user_results.home_score and game.away_team_score == user_results.away_score:
+                    current_stand.exact_hits += 1
             user_results.processed = True
             user_results.save()
         current_stand.week = settings.current_week

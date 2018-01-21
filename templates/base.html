@@ -102,7 +102,18 @@ $(window).scroll(function() {
         $('#back2Top').fadeOut();
     }
 });
+
 $(document).ready(function() {
+    var listItems = $('.navbar ul li');
+
+    $.each(listItems, function (key, litem) {
+        var aElement = $(this).children(litem)[0];
+
+        if(aElement == document.URL) {
+            $(litem).addClass('active');
+        }
+    });
+
     $("#back2Top").click(function(event) {
         event.preventDefault();
         $("html, body").animate({ scrollTop: 0 }, "slow");
@@ -110,6 +121,3 @@ $(document).ready(function() {
     });
 
 });
-</script>
-
-</html>
