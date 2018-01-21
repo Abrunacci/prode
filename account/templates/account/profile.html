@@ -1,31 +1,47 @@
 {% extends 'base.html' %}
 
-{% load i18n static %}
+
+{% load bootstrap4 %}
+{% bootstrap_javascript %}
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+
+{# Display django.contrib.messages as Bootstrap alerts #}
+{% bootstrap_messages %}
+{% load static %}
+<head>
+    <link href="{% static 'css/custom.css' %}" rel="stylesheet">
+</head>
+
 
 {% block title %} | Perfil {% endblock %}
 
-{% block javascript %}
-{% endblock %}
-
 {% block content %}
-    <br/>
-    <div class="container" style="align-content: center">
-        <div class="row justify-content-center align-items-center">
-            <div class="card">
-                <h3 class="card-header">Cambiar contraseña</h3>
-                <div class="card-body">
-                    {% if not user.has_usable_password %}
-                    <div class="alert alert-warning">
-                        No ha definido una contraseña.
+{# Display a form #}
+    <section id="main-section-unregistered">
+        <div class="row">
+            <div id="main-section-message">
+                <div class="col-lg-4 col-sm-10 col-10 col-offset-1">
+                    <div class="card">
+                        <h4 class="card-header">
+                            Cambio de contraseña.
+                        </h4>
+                        <div class="card-body">
+                            {% for error in form.title.errors %}
+                                <div class="alert alert-danger fade show">{{ error }}</div>
+                            {% endfor %}
+                            <form action="{% url 'password' %}" method="post" class="form">
+                                {% csrf_token %}
+                                {% bootstrap_form form %}
+                                {% buttons %}
+                                <button type="submit" class="btn btn-primary float-right">Cambiar contraseña</button>
+                                {% endbuttons %}
+                            </form>
+                        </div>
                     </div>
-                    {% endif %}
-                    <form role="form" class="form-horizontal" method="post" action="{% url 'password' %}">
-                        {% csrf_token %}
-                        {{ form.as_p }}
-                        <button type="submit" class="btn btn-primary">Cambiar contraseña</button>
-                    </form>
                 </div>
             </div>
         </div>
-    </div>
-{% endblock content %}
+    </section>
+{% endblock %}
+

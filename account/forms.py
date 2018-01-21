@@ -10,17 +10,17 @@ class ChangePasswordForm(forms.ModelForm):
 
     id = forms.CharField(widget=forms.HiddenInput())
     old_password = forms.CharField(
-        label="Old password",
+        label="Contraseña actual",
         required=False,
         widget=forms.PasswordInput(attrs={'class': 'form-control'}),
         )
     new_password = forms.CharField(
-        label="New password",
+        label="Nueva contraseña",
         required=True,
         widget=forms.PasswordInput(attrs={'class': 'form-control'}),
         )
     confirm_password = forms.CharField(
-        label="Confirm new password",
+        label="Confirme nueva contraseña",
         required=True,
         widget=forms.PasswordInput(attrs={'class': 'form-control'}),
         )
