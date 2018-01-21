@@ -44,7 +44,7 @@
 
         function generate_predictions_table(data, cb){
             var table = "<div class=\"card \">" +
-                    "<table class=\"table table-sm table-bordered\">" +
+                    "<table id=\"predictionsTableForm\" class=\"table table-sm table-bordered\">" +
                     "<thead>" +
                         "<tr>" +
                             "<th>Away Team</th>" +
@@ -91,7 +91,7 @@
         function saveGamesPredictions(){
             var results = [];
             url = "{% url 'save_results' %}";
-            $("#predictionsTable .row").each(function(){
+            $("tr").each(function(){
                 if (this.hasAttribute('id')){
                     var game_id = this.id;
                     var game_prediction = {
