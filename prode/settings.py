@@ -89,6 +89,19 @@ LOGOUT_REDIRECT_URL = '/'
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
+"""
+Host
+ec2-107-22-229-213.compute-1.amazonaws.com
+Database
+dbqfit5tfm257q
+User
+saiaqvilhjcuma
+Port
+5432
+Password
+939a979fb961c9a89d846535c470137e09f9bf39178d2af1d2b036c9ef30edc1
+"""
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',

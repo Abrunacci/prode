@@ -1,4 +1,18 @@
 {% load static %}
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>NFL Prode {% block title %}{% endblock %}</title>
+    <link rel="icon" type="image/png" href="{% static "img/favicon.png" %}">
+
+    <!-- Bootstrap 4 -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+
+    <!-- custom.css -->
+    <link rel="stylesheet" href="{% static "css/custom.css" %}">
+</head>
 <nav class="navbar navbar-expand-lg navbar-full navbar-dark bg-dark">
     <a class="navbar-brand" href="#" disabled>
         <img src="{% static 'img/NFL-logo.png' %}" width="27" height="30" class="d-inline-block align-top" alt="">
