@@ -9,21 +9,34 @@
 
 {# Display django.contrib.messages as Bootstrap alerts #}
 {% bootstrap_messages %}
+{% load static %}
+<head>
+    <link href="{% static 'css/custom.css' %}" rel="stylesheet">
+</head>
+
 
 {# Display a form #}
-<br/>
-<div class="container">
-    <div class="row justify-content-center align-items-center">
-        <div class="card" style="width: 25rem;">
-            <h4 class="card-header bg-danger text-white">Activacion inválida</h4>
-            <div class="card-body">
-                <div class="card-text">
-                    <p> El link de activación es incorrecto o ha expirado.</p>
-                    <p> Pongase en contacto con el administrador del sitio</p>
+<body>
+    <section id="main-section-unregistered">
+        <div class="row">
+            <div id="main-section-message">
+                <div class="col-lg-6 col-sm-10 col-sm-offset-1 col-10 col-offset-1">
+                    <div class="card">
+                        <h4 class="card-header bg-danger">
+                            Activación inválida.
+                        </h4>
+                        <div class="card-body">
+                            <p class="card-text">El link de activación ha expirado o es inválido.</p>
+                            <p class="card-text">Pongase en contacto con el administrador del sitio</p>
+                            <div class="card-block">
+                                <a href="mailto:abrunacci@bitson.group" class="btn btn-dark">Enviar Mail</a>
+                                <a href="{% url 'home' %}" class="btn btn-primary">Ir al inicio</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <a href="mailto:abrunacci@bitson.group" class="btn btn-light float-left">Enviar Mail</a>
-                <a href="{% url 'home' %}" class="btn btn-primary float-right">Ir al inicio</a>
             </div>
         </div>
-    </div>
-</div>
+    </section>
+</body>
+

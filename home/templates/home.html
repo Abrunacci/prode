@@ -4,43 +4,30 @@
     | Home
 {% endblock %}
 {% block content %}
-    <br/>
-<div class="row">
-        <div class="col-2">
-            <div class="card">
-                    <h5 class="card-header">Mis Puntos</h5>
-                <div class="card-body">
-                    <table>
-                        <tr>
-                            <td style="text-align: left;">Semanal: </td>
-                            <td style="text-align: right;"> <strong><div id="userWeekPoints"></div></strong></td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: left;">Totales: </td>
-                            <td style="text-align: right;"> <strong><div id="userGeneralPoints"></div></strong></td>
-                        </tr>
-                    </table>
+
+    <section id="main-section">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-7 col-sm-12 standing-table">
+                    <div class="card text-dark">
+                        <h4 class="card-header bg-light">Tabla General</h4>
+                        <div id="generalTable"></div>
+                    </div>
+                </div>
+                <div class="col-lg-5 col-sm-12 standing-table">
+                    <div class="card text-dark">
+                        <h4 class="card-header bg-light">Tabla Semanal</h4>
+                        <div id="weeklyTable"></div>
+                    </div>
                 </div>
             </div>
         </div>
-    <div class="col-6">
-        <div class="card">
-            <h5 class="card-header">Tabla General</h5>
-            <div id="generalTable"></div>
-        </div>
-    </div>
-    <div class="col-4">
-        <div class="card ">
-            <h5 class="card-header ">Tabla Semanal</h5>
-            <div id="weeklyTable"></div>
-        </div>
-    </div>
-    </div>
-</div>
+    </section>
+
     <script>
 
     function generate_table(data, cb){
-        var table = '<table class="table">' +
+        var table = '<table class="table table-sm table-bordered">' +
             '<thead>' +
             '<tr>' +
             '<th>#</th>' +
@@ -60,7 +47,7 @@
                 table += "<tr>";
             }
             var position = i+1;
-            table += "<td scope=\"row\">" + position + "</td>" +
+            table += "<td scope=\"row\" class=\"font-weight-bold\">" + position + "</td>" +
                 "<td>" + user.username + "</td>" +
                 "<td>" + user.winner_hits + "</td>" +
                 "<td>" + user.exact_hits + "</td>"+
@@ -88,10 +75,6 @@
                     generate_table(data.general, function (table) {
                             $('#generalTable').html(table);
                     });
-
-                    $('#userWeekPoints').html(data.user_points.weekly);
-                    $('#userGeneralPoints').html(data.user_points.general);
-
                 }
             });
         }

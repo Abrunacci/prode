@@ -15,7 +15,7 @@ def get_general_standings():
                                                          '-exact_hits',
                                                          '-difference_hits',
                                                          '-winner_hits',
-                                                         'user')
+                                                         'user__username')
     general_standing = [standing.to_dict() for standing in general_standing]
     return general_standing
 
@@ -23,10 +23,10 @@ def get_general_standings():
 def get_weekly_standings():
     settings = Settings.objects.get(id=1)
     weekly_standing = Weekly.objects.filter(week_id=settings.current_week_id).order_by('-points',
-                                                       '-exact_hits',
-                                                       '-difference_hits',
-                                                       '-winner_hits',
-                                                       'user')
+                                                                                       '-exact_hits',
+                                                                                       '-difference_hits',
+                                                                                       '-winner_hits',
+                                                                                       'user__username')
     weekly_standing = [standing.to_dict() for standing in weekly_standing]
     return weekly_standing
 

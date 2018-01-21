@@ -4,69 +4,125 @@
     | Mis Predicciones
 {% endblock %}
 {% block content %}
-    <br/>
-    <div class="row">
-        <div class="col">
-        </div>
-        <div class="col-8">
-            <div class="card">
-                <div class="card-body">
-                    <br/>
-                    <div class="input-group mb-3">
-                        <select class="custom-select" id="userSelect">
-                            <option selected>Seleccione el usuario...</option>
-                            {% for user in users %}
-                                {% if user.is_superuser %}
-                                    {{ pass }}
-                                {% else %}
-                                <option value="{{ user.pk }}">{{ user.username }}</option>
-                                {% endif %}
-                            {% endfor %}
-                        </select>
-                        <select class="custom-select" id="weekSelect">
-                            <option selected>Seleccione la semana...</option>
-                            {% for week in weeks %}
-                            <option value="{{ week.id }}">{{ week }}</option>
-                            {% endfor %}
-                        </select>
-                        <div class="input-group-append">
-                            <label class="input-group-text" for="inputGroupSelect02" onclick="searchResults()">Buscar Predicciones</label>
+    <section id="main-section">
+        <div class="container-fluid">
+            <div class="row  text-dark">
+                <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 standing-table">
+                    <div id="errorMessage"></div>
+                    <div class="card">
+                        <h4 class="card-header">Seleccione Semana y usuario</h4>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <form>
+                                        <div class="form-group">
+                                            <select class="form-control" id="weekSelection">
+                                                <option>Seleccione semana...</option>
+                                                {% for week in weeks %}
+                                                    <option value="{{ week.id }}">{{ week }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <form>
+                                        <div class="form-group">
+                                            <select class="form-control" id="userSelection">
+                                                <option>Seleccione Usuario...</option>
+                                                {% for user in users %}
+                                                    <option value="{{ user.pk }}">{{ user }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12 float-right">
+                                    <button type="button" onclick="searchResults()" class="btn btn-primary">Buscar Resultados</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div id="resultsForm">
-
-                    </div>
+                </div>
+                <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 standing-table">
+                    <div id="predictionsTable"></div>
                 </div>
             </div>
         </div>
-        <div class="col">
-        </div>
-    </div>
+    </section>
     <script>
-        function create_result_table(data, cb){
-            var resultTable = '<table class="table" id="resultsTable" style="text-align: center;">' +
-                '<tr class="row">' +
-                '<th class="col-sm-4">Away Team</th>' +
-                '<th class="col-sm-2">Away Score</th>' +
-                '<th class="col-sm-2">Home Score</th>' +
-                '<th class="col-sm-4">Home Team</th></tr>';
-            data.results.forEach(function(result){
-                result = $.parseJSON(result);
-                resultTable = resultTable + "<tr id=\""+result.id+"\" class=\"row\">" +
-                    "<td class=\"col-sm-4\">" + result.away_team.name + "</td>" +
-                    "<td class=\"col-sm-2\">" + result.away_team.score + "</td>" +
-                    "<td class=\"col-sm-2\">" + result.home_team.score + "</td>" +
-                    "<td class=\"col-sm-4\">" + result.home_team.name + "</td>" +
-                    "</tr>"
-            });
-            resultTable = resultTable + '</table>';
-            cb(resultTable);
+
+        function generate_predictions_table(data, cb){
+            var table = "<div class=\"card \">" +
+                    "<table class=\"table table-sm table-bordered\">" +
+                    "<thead>" +
+                        "<tr>" +
+                            "<th>Away Team</th>" +
+                            "<th>Away Score</th>" +
+                            "<th>Home Score</th>" +
+                            "<th>Home Team</th>" +
+                        "</tr>" +
+                    "</thead>" +
+                "<tbody>";
+
+            if (data.results != undefined){
+                data.results.forEach(function(result){
+                    var result = JSON.parse(result);
+                    table += "<tr>" +
+                        "<td>" + result.away_team.name + "</td>" +
+                        "<td style=\"font-weight:bold;\">" + result.away_team.score + "</td>" +
+                        "<td style=\"font-weight:bold;\">" +result.home_team.score + "</td>" +
+                        "<td>" + result.home_team.name + "</td>" +
+                        "</tr>";
+                })
+            } else if (data.games != undefined){
+                data.games.forEach(function(game){
+                    var game = JSON.parse(game);
+                    table += "<tr id=\""+game.id+"\">" +
+                        "<td>" + game.away_team.name + "</td>" +
+                        "<td><input id=\"away-"+ game.id +"\" style=\"text-align: center; max-width: 50px;\"></td>" +
+                        "<td><input id=\"home-"+ game.id +"\" style=\"text-align: center; max-width: 50px;\"></td>" +
+                        "<td>" + game.home_team.name + "</td>" +
+                        "</tr>";
+                })
+            } else {
+                return cb("<div class=\"alert alert-warning alert-dismissible fade show\" role=\"alert\">" +
+                    "<strong>Yellow flag!</strong> "+ data.error +
+                    "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
+                    "<span aria-hidden=\"true\">&times;</span></button></div>");
+            }
+            table += "</tbody>" +
+                    "</table>" +
+                "</div>";
+            cb(table);
         }
 
         function searchResults(){
-            week = $('#weekSelect').val();
+            week = $('#weekSelection').val();
+            if (isNaN(week)){
+                $('#errorMessage').html("<div class=\"alert alert-warning alert-dismissible fade show\" role=\"alert\">\n" +
+                    "  <strong>Yellow flag!</strong> Seleccione una semana.\n" +
+                    "  <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\n" +
+                    "    <span aria-hidden=\"true\">&times;</span>\n" +
+                    "  </button>\n" +
+                    "</div>");
+                return false;
+            }
+            user_id = $('#userSelection').val();
+            if (isNaN(user_id)){
+                $('#errorMessage').html("<div class=\"alert alert-warning alert-dismissible fade show\" role=\"alert\">\n" +
+                    "  <strong>Yellow flag!</strong> Seleccione un usuario.\n" +
+                    "  <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\n" +
+                    "    <span aria-hidden=\"true\">&times;</span>\n" +
+                    "  </button>\n" +
+                    "</div>");
+                return false;
+            }
             current_user = {{ user.pk }};
-            user_id = $('#userSelect').val();
             url = window.location.pathname;
             $.ajax({
                 type: "POST",
@@ -79,12 +135,8 @@
                 }),
                 dataType: "json",
                 success: function(data){
-                    if (data.error != undefined){
-                        $('#resultsForm').html(data.error);
-                        return false;
-                    }
-                    create_result_table(data, function(table){
-                        $('#resultsForm').html(table);
+                    generate_predictions_table(data, function(table){
+                        $('#predictionsTable').html(table);
                     });
                 }
             });

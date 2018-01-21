@@ -1,0 +1,89 @@
+/* custom.css */
+
+html,
+body {
+    height: 100%;
+}
+
+#main-section {
+        /* The background image */
+    background-image: url("../img/NFL-Field-Background.png");
+    /* Set a specified height, or the minimum height for the background image */
+    min-height: 100%;
+    /* Set background image to fixed (don't scroll along with the page) */
+    background-attachment: fixed;
+    /* Center the background image */
+    background-position: center;
+    /* Set the background image to no repeat */
+    background-repeat: no-repeat;
+    /* Scale the background image to be as large as possible */
+    background-size: cover;
+    color: white;
+    text-align: center;
+    /*display: flex;
+    align-items: flex-start;*/
+}
+
+#main-section-unregistered {
+    background: #222 url('../img/Football_field.jpg') center center no-repeat;
+    background-size: cover;
+    color: black;
+    height: 100%;
+    text-align: center;
+}
+
+#main-section-message {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    padding-top: 5%;
+    padding-bottom: 10%;
+    width:100%;
+}
+
+
+#signup {
+        /* The background image */
+    background-image: url("../img/Football_field.jpg");
+    /* Set a specified height, or the minimum height for the background image */
+    min-height: 500px;
+    /* Set background image to fixed (don't scroll along with the page) */
+    background-attachment: fixed;
+    /* Center the background image */
+    background-position: center;
+    /* Set the background image to no repeat */
+    background-repeat: no-repeat;
+    /* Scale the background image to be as large as possible */
+    background-size: cover;
+}
+
+.standing-table {
+    padding-top: 10px;
+}
+
+#back2Top {
+    width: 40px;
+    line-height: 40px;
+    overflow: hidden;
+    z-index: 999;
+    display: none;
+    cursor: pointer;
+    -moz-transform: rotate(270deg);
+    -webkit-transform: rotate(270deg);
+    -o-transform: rotate(270deg);
+    -ms-transform: rotate(270deg);
+    transform: rotate(270deg);
+    position: fixed;
+    bottom: 50px;
+    right: 0;
+    background-color: #DDD;
+    color: #555;
+    text-align: center;
+    font-size: 30px;
+    text-decoration: none;
+}
+
+#back2Top:hover {
+    background-color: #DDF;
+    color: #000;
+}
