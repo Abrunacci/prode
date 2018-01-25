@@ -20,12 +20,18 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'dd^bf32*5uh+otm+#qi*o*9g@8hj_q_59_+!-azjo3#vs^!)j_'
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+ENVIRONMENT = os.environ.get('ENVIRONMENT')
 
-ALLOWED_HOSTS = ['*']
+if ENVIRONMENT == 'Development' or ENVIRONMENT == 'Staging':
+    DEBUG = True
+elif ENVIRONMENT == 'Production':
+    DEBUG = False
+
+
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS')
 
 
 # Application definition
@@ -92,11 +98,11 @@ LOGOUT_REDIRECT_URL = '/'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'dbqfit5tfm257q',
-        'USER': 'saiaqvilhjcuma',
-        'PASSWORD': '939a979fb961c9a89d846535c470137e09f9bf39178d2af1d2b036c9ef30edc1',
-        'HOST': 'ec2-107-22-229-213.compute-1.amazonaws.com',
-        'PORT': '5432',
+        'NAME': os.environ.get('DB_NAME'),
+        'USER': os.environ.get('DB_USER'),
+        'PASSWORD': os.environ.get('DB_PASS'),
+        'HOST': os.environ.get('DB_HOST'),
+        'PORT': os.environ.get('DB_PORT'),
     }
 }
 
@@ -121,18 +127,18 @@ AUTH_PASSWORD_VALIDATORS = [
 
 ACCOUNT_ACTIVATION_DAYS = 7
 
-EMAIL_USE_TLS = True
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'soporte@bitson.com.ar'
-EMAIL_HOST_PASSWORD = 'J7FKa8<G'
-EMAIL_PORT = 587
+EMAIL_USE_TLS = os.environ.get('EMAIL_TLS')
+EMAIL_HOST = os.environ.get('EMAIL_HOST')
+EMAIL_HOST_USER = os.environ.get('EMAIL_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASS')
+EMAIL_PORT = os.environ.get('EMAIL_PORT')
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.0/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'America/Buenos_Aires'
+TIME_ZONE = os.environ.get('TIME_ZONE')
 
 USE_I18N = True
 
