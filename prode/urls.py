@@ -25,5 +25,6 @@ urlpatterns = [
     path('profile/', include('account.urls')),
     path('standings/', include('standings.urls'))
 ]
+
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 urlpatterns += staticfiles_urlpatterns()

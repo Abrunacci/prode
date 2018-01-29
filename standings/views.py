@@ -73,7 +73,7 @@ def generate_general_standings():
     settings = Settings.objects.get(id=1)
     for user in User.objects.filter(is_superuser=False).all():
         current_stand = General.objects.filter(user=user.id).first()
-        weekly_standings = Weekly.objects.filter(user_id=user.id, processed=False)
+        weekly_standings = Weekly.objects.filter(user_id=user.id, processed=False, week=settings.last_week)
         if not current_stand:
             current_stand = General()
         for week_stand in weekly_standings:
