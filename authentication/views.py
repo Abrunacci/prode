@@ -54,7 +54,7 @@ def signup(request):
             user.is_active = False
             user.save()
             current_site = get_current_site(request)
-            subject = _('Activá tu cuenta de NFL prode')
+            subject = _('Activá tu cuenta del Prode Mundialista')
             message = render_to_string('authentication/account_activation_email.html', {
                 'user': user,
                 'domain': current_site.domain,

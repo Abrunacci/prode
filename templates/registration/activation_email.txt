@@ -8,4 +8,4 @@ https://{{ site }}{% url 'activate' uidb64=uid token=token %}
 
 Thanks,
 
-NFL Prode
+Staff

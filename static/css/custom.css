@@ -7,7 +7,7 @@ body {
 
 #main-section {
         /* The background image */
-    background-image: url("../img/NFL-Field-Background.png");
+    background-image: url("../img/Background.jpg");
     /* Set a specified height, or the minimum height for the background image */
     min-height: 100%;
     /* Set background image to fixed (don't scroll along with the page) */
@@ -25,7 +25,7 @@ body {
 }
 
 #main-section-unregistered {
-    background: #222 url('../img/Football_field.jpg') center center no-repeat;
+    background: #222 url('../img/field.jpg') center center no-repeat;
     background-size: cover;
     color: black;
     height: 100%;
@@ -44,7 +44,7 @@ body {
 
 #signup {
         /* The background image */
-    background-image: url("../img/Football_field.jpg");
+    background-image: url("../img/field.jpg");
     /* Set a specified height, or the minimum height for the background image */
     min-height: 500px;
     /* Set background image to fixed (don't scroll along with the page) */

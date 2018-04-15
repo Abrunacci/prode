@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>NFL Prode {% block title %}{% endblock %}</title>
-    <link rel="icon" type="image/png" href="{% static "img/favicon.png" %}">
+    <title>Prode Mundialista {% block title %}{% endblock %}</title>
+    <link rel="icon" type="image/png" href="{% static "img/rusia.png" %}">
 
     <!-- Bootstrap 4 -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
@@ -23,7 +23,7 @@
     {% if user.is_authenticated %}
     <nav class="navbar navbar-expand-lg navbar-full navbar-dark bg-dark">
         <a class="navbar-brand" href="{% url 'home' %}" disabled>
-            <img src="{% static 'img/NFL-logo.png' %}" width="27" height="30" class="d-inline-block align-top" alt="">
+            <img src="{% static 'img/rusia.png' %}" width="27" height="30" class="d-inline-block align-top" alt="">
             Prode
         </a>
 
@@ -35,9 +35,6 @@
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
                     <a class="nav-link" href="{% url 'my_results' %}">Mis Predicciones <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'results' %}">Predicciones</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'rules' %}">Reglamento</a>

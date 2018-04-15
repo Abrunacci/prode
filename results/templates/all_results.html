@@ -91,7 +91,7 @@
                 })
             } else {
                 return cb("<div class=\"alert alert-warning alert-dismissible fade show\" role=\"alert\">" +
-                    "<strong>Yellow flag!</strong> "+ data.error +
+                    "<strong>Error.</strong> "+ data.error +
                     "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
                     "<span aria-hidden=\"true\">&times;</span></button></div>");
             }
@@ -105,7 +105,7 @@
             week = $('#weekSelection').val();
             if (isNaN(week)){
                 $('#errorMessage').html("<div class=\"alert alert-warning alert-dismissible fade show\" role=\"alert\">\n" +
-                    "  <strong>Yellow flag!</strong> Seleccione una semana.\n" +
+                    "  <strong>Error.</strong> Seleccione una semana.\n" +
                     "  <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\n" +
                     "    <span aria-hidden=\"true\">&times;</span>\n" +
                     "  </button>\n" +
@@ -115,7 +115,7 @@
             user_id = $('#userSelection').val();
             if (isNaN(user_id)){
                 $('#errorMessage').html("<div class=\"alert alert-warning alert-dismissible fade show\" role=\"alert\">\n" +
-                    "  <strong>Yellow flag!</strong> Seleccione un usuario.\n" +
+                    "  <strong>Error.</strong> Seleccione un usuario.\n" +
                     "  <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\n" +
                     "    <span aria-hidden=\"true\">&times;</span>\n" +
                     "  </button>\n" +
