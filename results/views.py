@@ -26,7 +26,7 @@ def my_results(request):
             week = Week.objects.get(id=week_id)
             results_list = get_results_from_table(week.id, json_data.get('user_id'))
             current_week = Settings.objects.get(id=1)
-            if current_week.current_week_id > week.id:
+            if current_week.current_week_id > week.id and not results_list:
                 return JsonResponse({'error': 'No se pueden cargar predicciones de fechas anteriores a la actual.'})
             from django.utils import timezone
             time = timezone.now()
